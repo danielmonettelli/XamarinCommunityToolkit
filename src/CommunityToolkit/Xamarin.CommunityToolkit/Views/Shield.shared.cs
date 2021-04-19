@@ -52,15 +52,15 @@ namespace Xamarin.CommunityToolkit.UI.Views
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public static readonly BindableProperty TextColorProperty =
 			BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(Shield), Color.Default,
-				propertyChanged: OnTextColorChanged);
+				propertyChanged: OnStatusTextColorChanged);
 
+		[Obsolete("TextColor is obsolete. Please use StatusTextColor instead")]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public Color TextColor
 		{
-			get => (Color)GetValue(TextColorProperty);
-			set => SetValue(TextColorProperty, value);
+			get => (Color)GetValue(StatusTextColorProperty);
+			set => SetValue(StatusTextColorProperty, value);
 		}
-
-		static void OnTextColorChanged(BindableObject bindable, object oldValue, object newValue) => ((Shield)bindable).StatusTextColor = (Color)newValue;
 
 		/// <summary>
 		/// Backing BindableProperty for the <see cref="SubjectTextColor"/> property.
@@ -101,15 +101,14 @@ namespace Xamarin.CommunityToolkit.UI.Views
 		[Obsolete("Color is obsolete. Please use StatusBackgroundColor instead")]
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public static readonly BindableProperty ColorProperty =
-			BindableProperty.Create(nameof(Color), typeof(Color), typeof(Shield), Color.Default,
-		propertyChanged: OnColorChanged);
+			BindableProperty.Create(nameof(Color), typeof(Color), typeof(Shield), Color.Default, propertyChanged: OnStatusBackgroundColorChanged);
 
-		static void OnColorChanged(BindableObject bindable, object oldValue, object newValue) => ((Shield)bindable).UpdateColor();
-
+		[Obsolete("Color is obsolete. Please use StatusBackgroundColor instead")]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		public Color Color
 		{
-			get => (Color)GetValue(ColorProperty);
-			set => SetValue(ColorProperty, value);
+			get => (Color)GetValue(StatusBackgroundColorProperty);
+			set => SetValue(StatusBackgroundColorProperty, value);
 		}
 
 		/// <summary>
@@ -309,8 +308,6 @@ namespace Xamarin.CommunityToolkit.UI.Views
 		void UpdateStatus() => ShieldStatus.Text = Status;
 
 		void UpdateSubjectColor() => ShieldSubjectContainer.BackgroundColor = SubjectBackgroundColor;
-
-		void UpdateColor() => ShieldStatusContainer.BackgroundColor = Color;
 
 		void UpdateStatusBackgroundColor() => ShieldStatusContainer.BackgroundColor = StatusBackgroundColor;
 
