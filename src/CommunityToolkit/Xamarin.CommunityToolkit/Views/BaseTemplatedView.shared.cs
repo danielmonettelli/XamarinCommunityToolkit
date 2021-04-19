@@ -11,7 +11,7 @@ namespace Xamarin.CommunityToolkit.UI.Views.Internals
 	{
 		TControl? control;
 
-		protected TControl Control => control ?? throw new NullReferenceException();
+		protected TControl? Control => control;
 
 		/// <summary>
 		/// Constructor of <see cref="BaseTemplatedView{TControl}" />
@@ -24,7 +24,7 @@ namespace Xamarin.CommunityToolkit.UI.Views.Internals
 			base.OnBindingContextChanged();
 
 			if (control != null)
-				Control.BindingContext = BindingContext;
+				control.BindingContext = BindingContext;
 		}
 
 		protected override void OnChildAdded(Element child)
@@ -32,7 +32,7 @@ namespace Xamarin.CommunityToolkit.UI.Views.Internals
 			if (control == null && child is TControl content)
 			{
 				control = content;
-				OnControlInitialized(Control);
+				OnControlInitialized(control);
 			}
 
 			base.OnChildAdded(child);
