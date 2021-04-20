@@ -23,8 +23,8 @@ namespace Xamarin.CommunityToolkit.UI.Views.Internals
 		{
 			base.OnBindingContextChanged();
 
-			if (control != null)
-				control.BindingContext = BindingContext;
+			if (Control != null)
+				Control.BindingContext = BindingContext;
 		}
 
 		protected override void OnChildAdded(Element child)
